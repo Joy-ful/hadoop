@@ -1,0 +1,10 @@
+/*
+    String result = "";
+    String path = "";
+    FileInputStream fileInputStream = new FileInputStream(path);
+    BufferedReader bis = new BufferedReader(new InputStreamReader(fileInputStream));
+    String line = "";
+        while ((line = bis.readLine()) != null) {
+                result += line;
+                }
+                return result;*/

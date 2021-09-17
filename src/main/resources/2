@@ -1,0 +1,27 @@
+        /*Stream<java.nio.file.Path> fileStatuses = Files.list(Paths.get(path));
+        //读取结尾为.b3dm的文件
+        fileStatuses.filter(x->x.toString().endsWith(".b3dm")).forEach(
+                localDir->{
+                    //文件名
+                    java.nio.file.Path fileName = localDir.getFileName();
+                    System.out.println(fileName);
+                    try {
+                        byte[] bytes1 = IOUtils.toByteArray((InputStream) fileName);
+                        BytesWritable b = new BytesWritable(bytes1);
+                        FileInputStream in = new FileInputStream(new File(path));
+                        byte[] bytes = IOUtils.toByteArray(in);
+                        in.read(bytes);
+                        BytesWritable value = new BytesWritable(bytes);
+
+                        System.out.println("key的值：" + b);
+                        System.out.println("key的长度：" + b.getLength());
+                        System.out.println("value的值：" + value);
+                        System.out.println("value的长度：" + value.getLength());
+                        //long length = writer.getLength();
+                        System.out.println("*******************************************");
+                        writer.append(b, value);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+        );*/

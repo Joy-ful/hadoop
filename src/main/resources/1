@@ -1,0 +1,97 @@
+        File[] list = new File(path).listFiles();
+        for (File file : list) {
+            if (file.isFile()) {
+                if (file.getName().endsWith(".b3dm")) {
+                    // 就输出该文件的相对路径
+                    System.out.println(file.getName());
+                    //byte[] bytes1 = new byte[Integer.parseInt(file.getPath())];
+                    //BytesWritable b = new BytesWritable(bytes1);
+                    BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+                    System.out.println("Available bytes:" + in.available());
+
+                    byte[] temp = new byte[1024];
+                    int size = 0;
+                    while ((size = in.read(temp)) != -1) {
+                        out.write(temp, 0, size);
+                    }
+                    in.close();
+
+                    byte[] content = out.toByteArray();
+                    System.out.println("Readed bytes count:" + content.length);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        FileInputStream fis = new FileInputStream("D:\\临时目录\\osgbCity_fire\\tileset.json");
+                try (Reader reader = new InputStreamReader(fis, "UTF-8")) {
+                    Gson gson = new GsonBuilder().create();
+                    JsonRootBean json = gson.fromJson(reader, JsonRootBean.class);
+
+                    String generatetool = json.getAsset().getGeneratetool();
+                    String gltfUpAxis = json.getAsset().getGltfUpAxis();
+                    String version = json.getAsset().getVersion();
+
+                    double geometricError = json.getGeometricError();
+
+                    List<Double> box = json.getRoot().getBoundingVolume().getBox();
+                    List<Children> children = json.getRoot().getChildren();
+                    for (Children child : children) {
+                        List<Double> boundingVolume = child.getBoundingVolume().getBox();
+                        String uri = child.getContent().getUri();
+                        double geometricError1 = child.getGeometricError();
+                        //System.out.println(geometricError1);
+                    }
+
+                    String content = json.getRoot().getContent().getUri();
+
+                    //double geometricError1 = json.getRoot().getGeometricError();
+
+                    System.out.println(content);
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }

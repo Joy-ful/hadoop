@@ -1,0 +1,29 @@
+public class Test01 {
+    public static void main(String[] args) throws Exception{
+        // 字节流拷贝
+        // 创建一个字节输入流，用于读取E盘下的sss.txt文件
+        FileInputStream fis=new FileInputStream("E:/sss.txt");
+        // 创建一个文件字节输出流，用于将读取到的数据写入当前sss.bak文件中
+        FileOutputStream fos=new FileOutputStream("E:/sss.bak");
+        byte[] buff=new byte[1024];     // 定义一个字符数组作为缓冲区
+        int ch;
+        while ((ch=fis.read()) !=-1) {  // 判断是否读到文件末尾
+            System.out.write(ch);
+            fos.write(buff, 0,ch);      // 从第一个一个字节开始，向文件写入ch个字符
+        }
+        fis.close();
+        fos.close();
+        // 字符流拷贝
+        // 创建一个BufferedReader缓冲对象
+        BufferedReader br=new BufferedReader(new FileReader("E:/aaa.txt"));
+        // 创建一个BufferedWriter缓冲对象
+        BufferedWriter bw=new BufferedWriter(new FileWriter("E:/aaa.bak"));
+        String str;
+        while ((str=br.readLine()) != null) {   // 每次读取一行文本，判断是否到文件末尾
+            bw.write(str);
+            bw.newLine();   // 写入一个换行符，该方法会根据不同的操作系统生成相应的换行符
+        }
+        br.close();
+        bw.close();
+    }
+}
